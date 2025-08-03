@@ -1,0 +1,18 @@
+# Unity-specific files
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Aa]ssets/Plugins/StandaloneFileBrowser/
+[Aa]ssets/Plugins/StandaloneFileBrowser/Editor/
+[Aa]ssets/Plugins/StandaloneFileBrowser/Runtime/
+[Aa]ssets/Plugins/StandaloneFileBrowser/Scripts/
+
+# Rider-specific files
+.idea/
+*.sln
+*.csproj
+*.user
+*.userprefs
