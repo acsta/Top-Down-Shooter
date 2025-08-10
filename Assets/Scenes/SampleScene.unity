@@ -1355,8 +1355,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1370024164}
-  - component: {fileID: 1370024165}
   - component: {fileID: 1370024166}
+  - component: {fileID: 1370024165}
   - component: {fileID: 1370024167}
   - component: {fileID: 1370024170}
   - component: {fileID: 1370024168}
@@ -1398,6 +1398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 1.5
   runSpeed: 3
+  turnSpeed: 10
 --- !u!143 &1370024166
 CharacterController:
   m_ObjectHideFlags: 0
