@@ -21,11 +21,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private float runSpeed;
     private Vector3 moveDirection;
     private float verticleVelocity;
-    
-    [Header("Aim Info")]
-    private Vector3 lookingDirection;
-    [SerializeField] private LayerMask aimLayer;
-    [SerializeField] private Transform aim;
 
     private void Start()
     {
@@ -42,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         ApplyMovement();
-        AimTowardsMouse();
+        ApplyRotation();
         AnimatorControllers();
     }
 
@@ -58,19 +53,13 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isRunning", playRunAnimation);
     }
 
-    private void AimTowardsMouse()
+    private void ApplyRotation()
     {
-        Ray ray = Camera.main.ScreenPointToRay(aimInput);
-        if (Physics.Raycast(ray, out var hitIfo, Mathf.Infinity, aimLayer))
-        {
-            lookingDirection = hitIfo.point - transform.position;
+            var lookingDirection = player.aim.GetMousePosition() - transform.position;
             lookingDirection.y = 0;
             lookingDirection.Normalize();
             
             transform.forward = lookingDirection;
-            
-            aim.position = new Vector3(hitIfo.point.x, transform.position.y + 1, hitIfo.point.z);
-        }
     }
 
     private void ApplyMovement()
@@ -102,9 +91,6 @@ public class PlayerMovement : MonoBehaviour
         
         controls.Charactor.Movement.performed += ctx=>moveInput = ctx.ReadValue<Vector2>();
         controls.Charactor.Movement.canceled += ctx=>moveInput = Vector2.zero;
-        
-        controls.Charactor.Aim.performed += ctx=>aimInput = ctx.ReadValue<Vector2>();
-        controls.Charactor.Aim.canceled += ctx=>aimInput = Vector2.zero;
         
         controls.Charactor.Run.performed+=ctx=>
         {
